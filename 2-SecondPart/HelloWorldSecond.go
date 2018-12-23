@@ -28,7 +28,7 @@ func ScanKeybord(textToShow []string, inputTextToShow []string) []string {
 		fmt.Println(textToShow[i])
 	}
 	for i := 0; i < len(inputTextToShow); i++ {
-		fmt.Print(inputTextToShow[i])
+		fmt.Print(inputTextToShow[i] + ":")
 		scanner.Scan()
 		out[i] = scanner.Text()
 	}
@@ -36,8 +36,11 @@ func ScanKeybord(textToShow []string, inputTextToShow []string) []string {
 }
 
 /* MainMenue */
-func MainMenue() {
-	fmt.Println("1 - Calculator ")
+func MainMenue() ([]string, []string) {
+
+	var out = []string{"------------", "Top meny ", "1 - Calculator ", "q - Quit "}
+	var in = []string{"Select a number"}
+	return out, in
 }
 
 func main() {
@@ -46,13 +49,22 @@ func main() {
 	for text != "q" { // break the loop if text == "q"
 
 		//scanner.Scan()
-		var out = []string{"------------", "Top meny ", "1 - Calculator ", "q - Quit "}
-		var in = []string{"Select a number"}
+		//var out = []string{"------------", "Top meny ", "1 - Calculator ", "q - Quit "}
+		//var in = []string{"Select a number"}
+
+		out, in := MainMenue()
 		ret = ScanKeybord(out, in) //scanner.Text()
-		text = ret[1]
+		if ret[0] != "" {
+			switch ret[0] {
+			case "1":
+				//Calulator
+			}
+		}
+		text = ret[0] // Only one input
 		if text != "q" {
 			//fmt.Println("Your text was: ", text)
 		}
+
 	}
 	fmt.Println("Exit thanks!")
 }
